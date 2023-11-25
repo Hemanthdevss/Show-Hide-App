@@ -1,53 +1,66 @@
-import React, { Component } from "react";
+import {Component} from "react"
+import "./index.css"
 
 class ShowHide extends Component {
   state = {
-    isFirstNameClicked: false,
-    isLastNameClicked: false,
-  };
+    isFirstNameDisplayed : false,
+    isLastNameDisplayed : false
+  }
 
-  toggleFirstName = () => {
-    this.setState((prevState) => ({
-      isFirstNameClicked: !prevState.isFirstNameClicked,
-    }));
-  };
+  onDisplayFirstName = () => {
+    this.setState((prevState) => (
+      {isFirstNameDisplayed : !prevState.isFirstNameDisplayed}
+    ))
+  }
 
-  toggleLastName = () => {
-    this.setState((prevState) => ({
-      isLastNameClicked: !prevState.isLastNameClicked,
-    }));
-  };
+  onDisplayLastName = () => {
+    this.setState((prevState) => (
+      {isLastNameDisplayed : !prevState.isLastNameDisplayed}
+    ))
+  }
+
+
 
   render() {
-    const { isFirstNameClicked, isLastNameClicked } = this.state;
-    let firstNameDisplay = null;
-    let lastNameDisplay = null;
+      const {isFirstNameDisplayed , isLastNameDisplayed} = this.state
+      let paraContentFirst = ""
+      let paraContentLast = ""
+ 
 
-    if (isFirstNameClicked) {
-      firstNameDisplay = <p>Joe</p>;
-    } else {
-        firstNameDisplay = null
-    }
+      if (isFirstNameDisplayed) {
+        paraContentFirst = "Joe"
+      } else {
+        paraContentFirst = null
+      }
+      
+      if (isLastNameDisplayed) {
+        paraContentLast = "Jones"
+      } else {
+        paraContentLast = null
+      }
 
-    if (isLastNameClicked) {
-      lastNameDisplay = <p>Jones</p>;
-    } else {
-        lastNameDisplay = null
-    }
+      return (
+        <div className="bg_container">
+            <h1 className="headingStyle"> Show/Hide </h1>
+            <div className="Container">
+                <div className="firstContainer">
+                  <button onClick={this.onDisplayFirstName}> Show/Hide FirstName </button>
+                  <p> {paraContentFirst}</p>
 
-    return (
-      <div>
-        <button onClick={this.toggleFirstName}>
-          Show/Hide FirstName
-        </button>
-        {firstNameDisplay}
-        <button onClick={this.toggleLastName}>
-          Show/Hide LastName
-        </button>
-        {lastNameDisplay}
-      </div>
-    );
+                </div>
+
+                <div>
+                    <button onClick={this.onDisplayLastName}> Show/Hide LastName </button>
+                    <p> {paraContentLast}</p>
+                </div>
+            </div>
+            
+            
+            
+        </div>    
+    )
   }
+
 }
 
-export default ShowHide;
+export default ShowHide
